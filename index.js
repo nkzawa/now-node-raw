@@ -76,13 +76,19 @@ exports.build = withErrorLog(async function build({
   console.log('downloading...');
   await download(files, workPath, meta);
 
-  const entrypointDir = join(workPath, dirname(entrypoint));
+  let basename = entrypoint;
 
-  console.log('installing dependencies...');
-  await runNpmInstall(entrypointDir, ['--prefer-offline']);
+  // install all node_modules including parent directories.
+  while (basename !== '.') {
+    basename = dirname(basename);
+    const dir = join(workPath, basename);
 
-  console.log('executing now-build script...');
-  await runPackageJsonScript(entrypointDir, 'now-build');
+    console.log(`installing dependencies on "${basename}"...`);
+    await runNpmInstall(dir, ['--prefer-offline']);
+
+    console.log(`executing now-build script on "${basename}"...`);
+    await runPackageJsonScript(dir, 'now-build');
+  }
 
   console.log('resolving...');
   const resolvedFiles = await resolveFiles(workPath, entrypoint, config);
