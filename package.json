@@ -1,0 +1,16 @@
+{
+  "name": "@nkzawa/now-node-raw",
+  "version": "0.0.18",
+  "license": "MIT",
+  "files": [
+    "index.js",
+    "launcher.js"
+  ],
+  "dependencies": {
+    "@now/node-bridge": "1.1.2",
+    "resolve-dependencies": "2.2.3"
+  },
+  "peerDependencies": {
+    "@now/build-utils": "*"
+  }
+}
