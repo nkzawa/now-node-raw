@@ -1,6 +1,6 @@
 {
   "name": "@nkzawa/now-node-raw",
-  "version": "0.0.20",
+  "version": "0.1.0",
   "license": "MIT",
   "files": [
     "index.js",
