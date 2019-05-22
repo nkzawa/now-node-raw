@@ -70,7 +70,7 @@ exports.build = withErrorLog(async function build({
   files,
   entrypoint,
   workPath,
-  config,
+  config = {},
   meta,
 }) {
   console.log('downloading...');
@@ -116,7 +116,7 @@ exports.build = withErrorLog(async function build({
       ...launcherFiles
     },
     handler: 'launcher.launcher',
-    runtime: 'nodejs8.10'
+    runtime: config.runtime || 'nodejs10.x'
   });
 
   return { [entrypoint]: lambda };
