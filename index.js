@@ -116,7 +116,7 @@ exports.build = withErrorLog(async function build({
       ...launcherFiles
     },
     handler: 'launcher.launcher',
-    runtime: config.runtime || 'nodejs10.x'
+    runtime: config.runtime || 'nodejs8.10'
   });
 
   return { [entrypoint]: lambda };
